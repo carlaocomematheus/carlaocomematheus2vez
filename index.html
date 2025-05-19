@@ -1,55 +1,197 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <main>
-        <section id="container">]
-            <article class="cartao">
-                <div class="cartao__conteudo__pergunta">
-                    "Por que o basquete foi criado originalmente com cestas de pessego?"
-                </div>
-                <div class="cartao__conteudo__resposta">
-                   "Sim, e foi inventado em 1891 por James Nasmith"
-                </div>
-            </article>
+SCRIPT
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos do DOM
+    const iconesCampo = document.getElementById('icones-campo');
+    const iconesCidade = document.getElementById('icones-cidade');
+    const mensagemCelebracao = document.getElementById('mensagem-celebracao');
+    
+    // Dados
+    const campo = ["🌻", "🌾", "🚜", "🐄", "🏡", "🌳", "🐓", "🌄", "🍎", "🐝", "🚜", "🥕"];
+    const cidade = ["🏙️", "🏢", "🚕", "🌉", "🎭", "🚇", "🏛️", "🌃", "🎡", "🚦", "🏟️", "🎨"];
+    
+    const mensagens = [
+        "Campo e cidade, juntos na diversidade!",
+        "Do campo vem o alimento, na cidade o conhecimento!",
+        "Raízes no campo, asas na cidade!",
+        "Harmonia entre rural e urbano é progresso!",
+        "Respeito ao campo, evolução na cidade!",
+        "Da roça à metrópole, cada lugar tem seu valor!",
+        "O campo alimenta, a cidade inspira!",
+        "Tradição e inovação, lado a lado!"
+    ];
+    
+    // Função para exibir ícones
+    function exibirIcones(elemento, lista) {
+        elemento.innerHTML = '';
+        // Pegar 6 ícones aleatórios
+        const iconesAleatorios = [...lista].sort(() => 0.5 - Math.random()).slice(0, 6);
+        
+        iconesAleatorios.forEach(icone => {
+            const span = document.createElement('span');
+            span.textContent = icone;
+            span.style.display = 'inline-block';
+            span.style.margin = '0 5px';
+            span.style.transition = 'transform 0.3s';
+            
+            span.addEventListener('mouseover', () => {
+                span.style.transform = 'scale(1.5) rotate(10deg)';
+            });
+            
+            span.addEventListener('mouseout', () => {
+                span.style.transform = 'scale(1)';
+            });
+            
+            elemento.appendChild(span);
+        });
+    }
+    
+    // Função para exibir mensagem aleatória
+    function exibirMensagem() {
+        const mensagem = mensagens[Math.floor(Math.random() * mensagens.length)];
+        mensagemCelebracao.textContent = mensagem;
+        
+        // Efeito de digitação
+        let i = 0;
+        mensagemCelebracao.textContent = '';
+        const typingEffect = setInterval(() => {
+            if (i < mensagem.length) {
+                mensagemCelebracao.textContent += mensagem.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingEffect);
+            }
+        }, 100);
+    }
+    
+    // Inicializar
+    exibirIcones(iconesCampo, campo);
+    exibirIcones(iconesCidade, cidade);
+    exibirMensagem();
+    
+    // Atualizar a cada 5 segundos
+    setInterval(() => {
+        exibirIcones(iconesCampo, campo);
+        exibirIcones(iconesCidade, cidade);
+        exibirMensagem();
+    }, 5000);
+});
 
-            <article class="cartao">
-                <div class="cartao__conteudo__pergunta">
-                    "Qual foi o jogo com a maior pontuacao da NBA"
-                </div>
-                <div class="cartao__conteudo__resposta">
-                   "Detroit Pistom 186xDenver Nuggets 184"
-                </div>
-            </article>
-            article class="cartao">
-            <div class="cartao__conteudo__pergunta">
-                "Por que o numero 69 é proibido nas camisas da NBA?""
-            </div>
-            <div class="cartao__conteudo__resposta">
-               "Pois é uma citação sexual
-            </div>
-        </article>
-        article class="cartao">
-                <div class="cartao__conteudo__pergunta">
-                    "Qual tie brasileiro foi o primeiro a vencer um campeonato mundial de clubes?"
-                </div>
-                <div class="cartao__conteudo__resposta">
-                 "Corinthians(2000)
-                </div>
-            </article>
-            article class="cartao">
-                <div class="cartao__conteudo__pergunta">
-                "O jogaddor tem o recore e mais pontos em um unico jogo da NBA?""
-                </div>
-                <div class="cartao__conteudo__resposta">
-                   "Will Chamberlain"
-                </div>
-            </article>
-        </section>
-    </main>
-</body>
-</html>
+                STYLE.CSS
+                
+                /* Estilos Gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #4CAF50, #2196F3);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.subtitulo {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Seções Campo e Cidade */
+.secoes {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+section {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+}
+
+.campo {
+    background-color: #E8F5E9;
+    border: 2px solid #4CAF50;
+}
+
+.cidade {
+    background-color: #E3F2FD;
+    border: 2px solid #2196F3;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+}
+
+.icones {
+    font-size: 3em;
+    margin: 20px 0;
+    min-height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.descricao {
+    font-style: italic;
+    color: #555;
+}
+
+/* Mensagem de Celebração */
+.mensagem {
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #FFF9C4;
+    border-left: 5px solid #FFC107;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .secoes {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+}
